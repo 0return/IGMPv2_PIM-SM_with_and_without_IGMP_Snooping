@@ -1,6 +1,6 @@
-# Star the source
+# Start the source via shell
 
-docker exec -it clab-igmpv2-src bngblaster -C /config/src.json -S /run/bngblaster.sock -l info
+bngblaster -C /config/src.json -I
 
 
 # Start the receivers
