@@ -6,4 +6,5 @@ bngblaster -C /config/src.json -I
 # Start the receivers
 for n in rcv-a1 rcv-a2 rcv-b1 rcv-b2; do docker exec -d clab-igmpv2-$n sh -c "rm -f /run/bngblaster.sock /run/lock/bngblaster_eth1.lock; bngblaster -C /config/$n.json -S /run/bngblaster.sock -L /config/out/$n.log -l info -l igmp -P /config/out/$n.pcap"; done
 
-
+# Check the rx-pps-multicast
+for n in rcv-a1 rcv-a2 rcv-b1 rcv-b2; do echo -n "$n: "; docker exec clab-igmpv2-$n bngblaster-cli /run/bngblaster.sock access-interfaces | grep rx-pps-multicast; done
