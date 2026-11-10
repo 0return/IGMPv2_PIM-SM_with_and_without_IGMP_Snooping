@@ -101,13 +101,6 @@ docker exec clab-igmpv2-rcv-a2 bngblaster-cli /run/bngblaster.sock igmp-join ses
 docker exec clab-igmpv2-rcv-a1 bngblaster-cli /run/bngblaster.sock igmp-leave session-id 1 group 239.1.1.1
 ```
 
-Then repeat the same two commands for rcv-b2 and rcv-b1.
-
-| Test | LAN-A | LAN-B |
-|---|---|---|
-| 1. pps per receiver | | |
-| 2. leave-delay-ms | | |
-| 3. leave-delay-ms, another member remains | | |
 
 ## Notes
 
