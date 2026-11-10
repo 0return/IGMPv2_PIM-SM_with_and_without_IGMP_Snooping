@@ -1,13 +1,10 @@
-[README.md](https://github.com/user-attachments/files/34654148/README.md)
 # IGMPv2 + PIM-SM with and without IGMP Snooping — Nokia SR OS + BNG Blaster
 
 The same multicast traffic is delivered to two LANs: LAN-A has no snooping, and LAN-B has IGMP snooping. BNG Blaster measures, in milliseconds, how long traffic takes to arrive after a join and how long it takes to stop after a leave.
 
 ```
- src ──── R2 ─────────────────────────── R1 ──── SW1 ─┬─ LAN-A (VPLS 100, no snooping): rcv-a1, rcv-a2, h-linux-a
- 10.10.0.10  \                          /             └─ LAN-B (VPLS 200, snooping):    rcv-b1, rcv-b2, h-linux-b
-              └──── R3 ────── R4 ──────┘
-                    RP 3.3.3.3
+<img width="1517" height="647" alt="image" src="https://github.com/user-attachments/assets/ec15867f-e131-408d-a6dd-5e8ff15067d5" />
+
 ```
 
 The shared tree runs through the RP (R2 → R3 → R4 → R1). The shortest-path tree, or SPT, uses the direct link (R2 → R1).
