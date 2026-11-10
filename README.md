@@ -101,6 +101,12 @@ docker exec clab-igmpv2-rcv-a2 bngblaster-cli /run/bngblaster.sock igmp-join ses
 docker exec clab-igmpv2-rcv-a1 bngblaster-cli /run/bngblaster.sock igmp-leave session-id 1 group 239.1.1.1
 ```
 
+rx-pps-multicast diference 
+
+
+<img width="333" height="77" alt="image" src="https://github.com/user-attachments/assets/edff7e6b-559c-4901-8003-96f59979e579" />
+
+
 
 ## Notes
 
