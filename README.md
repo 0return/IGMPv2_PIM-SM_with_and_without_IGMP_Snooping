@@ -2,10 +2,9 @@
 
 The same multicast traffic is delivered to two LANs: LAN-A has no snooping, and LAN-B has IGMP snooping. BNG Blaster measures, in milliseconds, how long traffic takes to arrive after a join and how long it takes to stop after a leave.
 
-```
+
 <img width="1517" height="647" alt="image" src="https://github.com/user-attachments/assets/ec15867f-e131-408d-a6dd-5e8ff15067d5" />
 
-```
 
 The shared tree runs through the RP (R2 → R3 → R4 → R1). The shortest-path tree, or SPT, uses the direct link (R2 → R1).
 
