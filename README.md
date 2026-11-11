@@ -107,6 +107,40 @@ rx-pps-multicast diference
 <img width="333" height="77" alt="image" src="https://github.com/user-attachments/assets/edff7e6b-559c-4901-8003-96f59979e579" />
 
 
+Verify
+
+PIM uses the unicast table for RPF. On R1, to-r2 has OSPF metric 2 to break the 2-hop tie toward the RP. The source should resolve via to-r2 (the SPT), and the RP via to-r4 (the shared tree):
+
+```
+show router route-table 10.10.0.10
+show router route-table 3.3.3.3
+```
+
+On R1, the (*,G) should show Incoming Intf: to-r4 and the (S,G) Incoming Intf: to-r2:
+
+The overall rate is 100 pps because both groups use this link. This (S,G) carries 50 pps, and none of the 500 packets were lost in 10 s.
+
+Shared tree (RPT). It takes 3 hops, R3 (RP) → R4 → R1, at 0 pps:
+
+
+  Source        Response Dest    Overall     Packet Statistics For Traffic From
+3.3.3.3         1.1.1.1         Mcast Pkt    3.3.3.3 To 239.1.1.1
+     |       __/  rtt 3.00ms     Rate       Lost/Sent = Pct  Rate
+     v      /                    -------     ---------------------
+10.0.34.1       ?              Reached RP/Core
+     |     ^      ttl    2         0 pps        0/0    = --     0 pps
+     v     |
+10.0.34.2
+10.0.14.2       ?
+     |      \__   ttl    3         0 pps        0/0    = --     0 pps
+     v         \
+10.0.14.1       1.1.1.1
+  Receiver      Query Source
+
+
+
+The shared tree is still built: R1 keeps its (*,G) join toward the RP. The rate is 0 pps because, with an SPT threshold of 0, R1 switched to the SPT after the first packet and sent an (S,G,rpt) prune to the RP.
+
 
 ## Notes
 
