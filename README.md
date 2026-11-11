@@ -118,28 +118,18 @@ show router route-table 3.3.3.3
 
 On R1, the (*,G) should show Incoming Intf: to-r4 and the (S,G) Incoming Intf: to-r2:
 
-The overall rate is 100 pps because both groups use this link. This (S,G) carries 50 pps, and none of the 500 packets were lost in 10 s.
+The shared tree is still built: R1 keeps its (*,G) join toward the RP. The rate is 0 pps because, with an SPT threshold of 0, R1 switched to the SPT after the first packet and sent an (S,G,rpt) prune to the RP.
+Source tree (SPT). It takes 2 hops, src → R2 → R1, at 50 pps for this (S,G):
+
+
+<img width="582" height="309" alt="image" src="https://github.com/user-attachments/assets/e6cf5bef-dd04-4fe6-9e64-5e5b0fddbc81" />
+
 
 Shared tree (RPT). It takes 3 hops, R3 (RP) → R4 → R1, at 0 pps:
 
-
-  Source        Response Dest    Overall     Packet Statistics For Traffic From
-3.3.3.3         1.1.1.1         Mcast Pkt    3.3.3.3 To 239.1.1.1
-     |       __/  rtt 3.00ms     Rate       Lost/Sent = Pct  Rate
-     v      /                    -------     ---------------------
-10.0.34.1       ?              Reached RP/Core
-     |     ^      ttl    2         0 pps        0/0    = --     0 pps
-     v     |
-10.0.34.2
-10.0.14.2       ?
-     |      \__   ttl    3         0 pps        0/0    = --     0 pps
-     v         \
-10.0.14.1       1.1.1.1
-  Receiver      Query Source
+<img width="573" height="355" alt="image" src="https://github.com/user-attachments/assets/76ec5afe-1497-477e-88b7-b2f027273dae" />
 
 
-
-The shared tree is still built: R1 keeps its (*,G) join toward the RP. The rate is 0 pps because, with an SPT threshold of 0, R1 switched to the SPT after the first packet and sent an (S,G,rpt) prune to the RP.
 
 
 ## Notes
